@@ -1,8 +1,5 @@
 <template>
   <div class="editor">
-    <br />
-    <br />
-    <br />
     <editor-menu-bubble
       :editor="editor"
       :keep-in-bounds="keepInBounds"
@@ -39,7 +36,9 @@
       </div>
     </editor-menu-bubble>
 
-    <editor-content class="editor__content" :editor="editor" />
+    <div>
+      <editor-content class="editor__content" :editor="editor" />
+    </div>
   </div>
 </template>
 
@@ -61,7 +60,8 @@ import {
   Link,
   Strike,
   Underline,
-  History
+  History,
+  Image
 } from "tiptap-extensions";
 export default {
   components: {
@@ -88,15 +88,11 @@ export default {
           new Italic(),
           new Strike(),
           new Underline(),
-          new History()
+          new History(),
+          new Image()
         ],
         content: `
-          <h2>
-            Menu Bubble
-          </h2>
-          <p>
-            Hey, try to select some text here. There will popup a menu for selecting some inline styles. <em>Remember:</em> you have full control about content and styling of this menu.
-          </p>
+          
         `
       })
     };
@@ -108,5 +104,10 @@ export default {
 </script>
 
 <style lang="scss">
+$color-black: #333333;
+$color-white: #eeeeee;
+$color-grey: #555555;
+
 @import "@/assets/scss/menububble.scss";
+@import "@/assets/scss/editor.scss";
 </style>

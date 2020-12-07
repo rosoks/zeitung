@@ -1,16 +1,11 @@
 <template>
-  <div class="home">
-    <menu-bubble />
+  <div>
+    <h1>Hey</h1>
   </div>
 </template>
 
 <script>
-import MenuBubble from "../components/MenuBubble.vue";
-
 export default {
-  name: "Home",
-  components: {
-    MenuBubble
-  }
+  name: "Home"
 };
 </script>
