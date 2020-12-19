@@ -19,18 +19,11 @@
       <v-col cols="12" sm="6" md="3">
         {{ numberOfComponents }}
       </v-col>
-      <v-col cols="12" sm="6" md="3">
-        <v-form>
-          <v-container>
-            <v-text-field
-              v-model="toPlacable"
-              label="background color"
-            ></v-text-field>
-          </v-container>
-        </v-form>
-      </v-col>
     </v-row>
 
+    <v-row class="ml-3">
+      {{ screen_type }}
+    </v-row>
     <v-row>
       <v-btn @click="getComponents()">
         <v-icon>mdi-text</v-icon>
@@ -45,17 +38,43 @@
     <v-row class="mt-4">
       <v-btn @click="setScalableOrShapeless()">Scalable/Shapeless</v-btn>
     </v-row>
-
     <v-row>
       <v-col cols="12" sm="6" md="3">
-        <v-btn>
-          Check which is placable
-        </v-btn>
+        <v-container fluid>
+          <v-text-field
+            label="Background"
+            solo-inverted
+            no-resize
+            rows="1"
+            v-model="styleData_background"
+          ></v-text-field>
+        </v-container>
       </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="12" sm="6" md="3">
-        <div v-if="checkPlacable">
-          {{ checkPlacable }}
-        </div>
+        <v-container fluid>
+          <v-text-field
+            label="Border"
+            solo-inverted
+            no-resize
+            rows="1"
+            v-model="styleData_border"
+          ></v-text-field>
+        </v-container>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" sm="6" md="3">
+        <v-container fluid>
+          <v-text-field
+            label="Z-index"
+            solo-inverted
+            no-resize
+            rows="1"
+            v-model="styleData_zindex"
+          ></v-text-field>
+        </v-container>
       </v-col>
     </v-row>
 
@@ -70,7 +89,9 @@
         <component
           :class="className"
           :id="componentId[components.indexOf(element)]"
+          :styleObject="styleObject"
           :is="MoveableComponent"
+          v-css
         ></component>
       </div>
     </div>
@@ -91,10 +112,13 @@ export default {
     MoveableComponent: MoveableComponent,
     isPlacable: null,
     className: null,
-    //componentId: [],
-    styleObject: null,
+    styleObject: "background: #132639; border: solid #66ffff;",
+    styleData: null,
+    styleData_background: null,
+    styleData_border: null,
+    styleData_zindex: null,
+    invoke: false,
 
-    toPlacable: null,
     data_changer: "editor"
   }),
 
@@ -124,6 +148,27 @@ export default {
         array.push(key);
       }
       return array;
+    },
+    screen_type: function() {
+      let screen;
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          screen = "phone";
+          break;
+        case "sm":
+          screen = "tablet";
+          break;
+        case "md":
+          screen = "laptop";
+          break;
+        case "lg":
+          screen = "desktop";
+          break;
+        case "xl":
+          screen = "4k";
+          break;
+      }
+      return screen;
     }
   },
 
@@ -141,13 +186,10 @@ export default {
           keepRatio: true
         },
         editorParams: {},
-        style: {
-          "z-index": 0
-        },
+        style: null,
         content: null
       };
       this.className = index;
-      //this.componentId.push(index);
       this.styleObject = dataToPush.style;
       this.$store.commit("setComponent", dataToPush);
       this.$store.commit("setCurrentPlacable", index);
@@ -212,22 +254,59 @@ export default {
       //this.$emit('remove');
 
       this.$store.commit("deleteComponent", this.currentId);
+    },
+    logParameters: function(el) {
+      console.log(el);
+    }
+  },
+
+  watch: {
+    invoke() {
+      this.styleData =
+        "background: " +
+        this.styleData_background +
+        "; " +
+        "border: " +
+        this.styleData_border +
+        "; " +
+        "z-index: " +
+        this.styleData_zindex +
+        "; ";
+      let data = {
+        id: this.currentId,
+        styleObject: this.styleData
+      };
+      this.$store.commit("setStyleParams", data);
+      console.log(this.$store.getters.getStyleObject(this.currentId));
+      this.invoke = false;
+    },
+    styleData_background() {
+      this.invoke = true;
+    },
+    styleData_border() {
+      this.invoke = true;
+    },
+    styleData_zindex() {
+      this.invoke = true;
+    }
+  },
+
+  directives: {
+    css: {
+      bind: function(el, bind, vnode) {
+        let thus = vnode.context;
+        thus.logParameters(el.style);
+      }
     }
   }
-  //watch: {
-  //  componentId(newValue) {
-  //    return newValue;
-  //  }
-  //}
 };
 </script>
 
 <style>
+@import "../assets/css/moveable.css";
+
 html {
   overflow: scroll;
-}
-
-body {
   background: #132639;
 }
 
@@ -263,11 +342,16 @@ body::-webkit-scrollbar-thumb {
   bottom: 0px;
   position: fixed;
   border: solid #333;
+  background: #333;
+  transition: all 1s ease;
+  /*transition: border 1000ms ease;*/
   width: 33%;
   height: 1%;
+  z-index: 10000;
 }
 
 .right-sidebar:hover {
+  height: 100%;
   border: solid #fff;
 }
 .add-buttons {

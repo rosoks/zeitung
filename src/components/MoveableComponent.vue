@@ -1,6 +1,8 @@
 <template>
   <Moveable
+    ref="moveable"
     class="moveable"
+    :style="styleData"
     v-bind="moveable"
     @drag="handleDrag"
     @resize="handleResize"
@@ -9,7 +11,7 @@
     @warp="handleWarp"
   >
     <!--<span>Vue Moveable</span>-->
-    <span>{{ id }}</span>
+    <!--<span>{{ id }}</span>-->
     <menu-bubble />
   </Moveable>
 </template>
@@ -28,7 +30,7 @@ export default {
 
   props: {
     id: Number,
-    styleObject: Object
+    styleObject: String
   },
 
   data: () => ({
@@ -52,7 +54,9 @@ export default {
     },
     currentState: "scalable",
     keepRatioState: true,
-    draggableState: true
+    draggableState: true,
+    styleData: null,
+    style: null
   }),
 
   methods: {
@@ -140,6 +144,21 @@ export default {
           changer: "editor"
         };
         this.$store.commit("setChanger", data);
+      } else {
+        this.moveable.draggable = true;
+        this.moveable.resizable = this.$store.getters.getPlacerParams(
+          this.id
+        ).resizable;
+        this.moveable.scalable = this.$store.getters.getPlacerParams(
+          this.id
+        ).scalable;
+        this.moveable.rotatable = true;
+        this.moveable.pinchable = true;
+        let data = {
+          id: this.id,
+          changer: "placer"
+        };
+        this.$store.commit("setChanger", data);
       }
       this.allStates();
     },
@@ -158,6 +177,9 @@ export default {
         this.moveable.keepRatio = newValue;
       }
       this.allStates();
+    },
+    style(newValue) {
+      console.log(newValue);
     }
   },
 
@@ -186,46 +208,25 @@ export default {
     },
     currentKeepRatio: function() {
       return this.$store.getters.getPlacerParams(this.id).keepRatio;
+    },
+    cords: function() {
+      return this.$refs.moveable.getRect();
     }
+  },
+
+  mounted() {
+    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === "setStyleParams") {
+        console.log(`Updating to ${state.components[this.id].styleObject}`);
+        this.styleData = state.components[this.id].styleObject;
+      }
+    });
   }
 };
 </script>
 
-<style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap");
+<style scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto:100&display=swap");
-html,
-body {
-  font-family: "Open Sans", sans-serif;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  color: #333;
-  letter-spacing: 1px;
-  background: #f5f5f5;
-  font-weight: 300;
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-}
-
-.page {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.page:nth-child(2n) {
-  background: #f0f0f0;
-}
-.page.main {
-  z-index: 1;
-  min-height: 700px;
-}
 
 .container {
   position: relative;
@@ -245,49 +246,5 @@ a {
   font-weight: 100;
   letter-spacing: 1px;
 }
-
-.moveable span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-}
-
-.description {
-  text-align: center;
-}
-
-.buttons.able {
-  margin-top: 16px;
-}
-.buttons.able a {
-  min-width: auto;
-  padding: 8px 20px;
-}
-.buttons {
-  text-align: center;
-  margin: 0;
-  padding: 10px;
-}
-
-.buttons a {
-  position: relative;
-  text-decoration: none;
-  color: #333;
-  border: 1px solid #333;
-  padding: 12px 30px;
-  min-width: 140px;
-  text-align: center;
-  display: inline-block;
-  box-sizing: border-box;
-  margin: 5px;
-  transition: all ease 0.5s;
-}
-
-.buttons a:hover,
-.buttons a.selected {
-  background: #333;
-  color: #fff;
-}
 </style>
+<style src="../assets/css/moveable.css"></style>
