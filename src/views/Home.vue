@@ -1,12 +1,111 @@
 <template>
-  <v-app>
-    <div class="center">{{ screen_type }}</div>
-
-    <div class="curtain-left" :style="curtain"></div>
+  <v-app style="background: #222;">
     <div class="center">
-      <div :style="screen"></div>
+      <div class="top-light"></div>
+      <div class="glass-screen" :style="screen"></div>
+      <div class="bottom-light"></div>
+      <div class="background">
+        kjadhfkjabci3hro2834vbaoh4892bcjlbau29bjbohcisacbkjbvajbubawoh8h2boicu093hnfhw893h2fi2vh0qhwnbi20vh3nfiaw983fb2ohw8gsa
+        ncgbjxhbwfi820fh74b7en49sk29dhr6rb547fh39dunndmi82ujahfhqobfo83hbjkshv8wbsbouchqo3bouhf9a8w4hfbjbsouefg934fbuagfv9g7fb
+        jbvkjzbskdvhwor92hfo23y98fh4rbuhse9r2h3r2oifh28hbfcvoy8bf2ofg92fb2bof347rgwkuihw3yuyfctbrc6tbf6b7rycr8cbovcung7bmtcuyn
+        jhcvfnuc8ingow8<span class="text1">w</span>4<span class="text1">h</span
+        >ohibl2vouvuh2h489ghxkjdbxkjcgvixyg2oh4ofugisyf8owug3bkthfgsuxgvt837h2ro2po3iruq<span
+          class="text4"
+          >power</span
+        >i3rh2ui3yrgjhdkh lkasd3jkhdaefbl<span class="text1">o</span>q<span
+          class="text1"
+          >a</span
+        >3hfo92f9wub4ituy2utbfkuy2i73gfbjuvdfg8w73gbfu2ig3rf7gwekf23urywegrk2itiu938tg2i3vfku<span
+          class="text4"
+          >i</span
+        >gi7t2gufi23yi23 nmbckweco2uh0c8<span class="text1">r</span>y<span
+          class="text1"
+          >r</span
+        >ifbk23u9gakmfbqk3uy1iurgbkgfiuyf2u3bk1fkugiufgvsfvmkfug273ifgblkdjhfoi2u3gfkbkjhougf<span
+          class="text4"
+          >n</span
+        >ajfkwyi3u2yrhiy laoi9209h1lhzuh<span class="text1">k</span>e<span
+          class="text1"
+          >d</span
+        >jbgi723gfvhmajfg8w3gkhwgirufgwierg2khi8dffgvkhm3nrio2fwvuyhkbkwj309247y5723ilro9<span
+          class="text4"
+          >mind</span
+        >olqk4yug4k2jy55e
+        nckawndcpwqu928yhouwgofy2893y23ygrakbkgcagkfgdbqk3ryia8y9283yg5bkjhsgfustyfgqkwerfhoaie7w7itgrjhwkhetiugsdytfu2j3rkh82
+        bckbakscblqho82yrbsefhioyr9ywkjbkwuowywjkhkwyeri2ugmwehfwiyeri2rgwkb4o28yf9suigfdbk2hfoisueg2khroieytiwgkhrwisety742ig
+        mzxbkhsdvosbepfiwy38y25ohwei7tw085ywvh6jh6hg4oi7u9yteghtbksghjusgtmnbtlisyieuhqlweuow8ytehwkj,tuowiyiwukwjhgkwjgkuydfi
+        mnabchalshiaoiyr92o3yrh2oy83yr2i3y5gkwutiwey<span class="text3"
+          >give</span
+        >k4utiywegrjwkjhfosutfgkjagfiy3t7yrgwoit8ywi4gutkwht8o3t4gutjh2y5i473tg
+        ncvblsheof82y93rhbfkjsgdfitg4yu2ioy8fygbksdhut3y<span class="text3"
+          >happiness</span
+        >ysi7etgkrfwdysfo86i3ugrkwjegosyet72gi3tky8wewgiubkt4vi4trwiuh
+        mnxbcvkjhsoeih2pi3ur902y85ig2mrtliduf8wg4jhtrmbwoejsdgu9sy4ik2hfoueweourgfkjs,dhsljdvbkyseowhoeirtw3jwnhjktee498uwhnfj
+        lwkhgoho2hoewh0e2hgbk3fgiuco3dhilaghdfowulfjkn23hf89shkuf2l3iry98fgkgwruoier98wyrowhfgskgdfzhfowuyer9823rgkwgfjgseuwge
+        znblwhoefnnkv9yw8y3hbjkfhsio7dviusdhfbwmfehkwuy72t3grjhbidf7wiu3grbkahfpiyfwkhlfqiyfi73gfhkbgyu2gf3vhjjcjsytfujgfg24hj
+        mnzbxkclwhelq<span class="text2">do</span
+        >ory2ukrh0ewyr2fu3guik57iug12kjhitfy2vn3dbiuyugfkdgfshgjfgw73i4g34tg3jh4vj2gogfv2k3rg98y4iuwktgkwyu45tgw
+        mabvsgakusfgi<span class="text2">it</span
+        >sro2839r82945729ruh2o375982t3iuywiu8eorqkykrwaeytw4yt<span
+          class="text6"
+          >code</span
+        >547igtkgwyrtwiugrkwy8rtsajrg2ki3yriutjfkhaifyi
+        alauro2i3rhwiytwgyvjh3rghiwoudfy8soukgejr2o8ro8yaekrjhwitygrjmhafiytaiv3hcdjxfqikwhr23ir82y3rhliruliayfgkwjhfisoyefkus
+        ksgfuywiu3gfoy3trgaufdia72liusidyksgebfjckxzjgwy3orihrowutugerflsyrewk3rklheriqyro2hruegrky23oiryeo87rsliayrkewgrho23y
+        ncalfhlweir2093ruilahfljhzusydklahwegkjtywtjgslkefhsuytekwjgrlfus89eywh3khroweut8wugrbko<span
+          class="text7"
+          >create</span
+        >guwkgfirshfbnskdfjgasddaf
+        jcvksaheljthawgoye4oihlvihsqvjaiehiwyoawflh_afjwlfiuawo3hlakfjalweroqu2g3vrhkqjhwfeioqy45982fy<span
+          class="text7"
+          >o</span
+        >rkj2gr3i72t34tgvjsdgsggs
+        kdlshjfljkvbowh3948tho348yr98gouqhr9edhfo8y_93geboauge98q23gfevaiug48q72g4vfieg94b34ouevfa4yft<span
+          class="text7"
+          >w</span
+        >geo849bghou34boahogwfgof ndakbco2h849qgohauweioawey73t4gavieyw74g<span
+          class="text5"
+          >b</span
+        >oryv9goesgr3yiugbiuqgl84sadfa7ug4vuiofleya7iug4vfuial<span
+          class="text7"
+          >n</span
+        >g934glfiaeygaube4iua7w8g ncahoyr9qy4tileaawhil2y9p8yq98ogeiuawidb<span
+          class="text5"
+          >e</span
+        >ah<span class="text5">f</span
+        >diuwyi4uhiauigglautigzslyueiawegtakiagietuykj<span class="text7"
+          >story</span
+        >uwegrui8342iohr2ih35l2hjk bcqih84yruh5oityaiotyuh3y48t798ovuheowi4<span
+          class="text5"
+          >l</span
+        >or<span class="text5">u</span
+        >83ytuebaklgh4t93yhto2398ty3ouhgkjbdfkvuwy4itgukgeruwheirgwjhrgkqouq3olhrgo
+        kjabkabeohq2oith082y9tyhekrkahgoi38ytoah<span class="text5">i</span
+        >eo<span class="text5">t</span
+        >7t83745kjabdkjncawohc834hwlahfoiwau498gakwjbfkch83yrowtfow2oihfwoi8yt43g54
+        ncljoi23h0u015ukjfhaodsfy34hjlafhioeyoug<span class="text5">e</span
+        >rk<span class="text5">u</span
+        >aevtkrhuiyaeiug4kt3hfi843iugbteohv8t5yku4tgieyi4hiutygsihgb3o48yt3iugiuyis
+        nvsjlh9u4ty98ahfsogfu3o84tghl45oi6uogiyz<span class="text5">v</span
+        >di<span class="text5">r</span
+        >gvksfehjoe3iteoih46loiutodr7towlbgldjfgpeu9rtygi37tyhwebgroui3u4howihgowi3
+        ohrt093u48iuouhe948thorhgouhcoilbdkrghie<span class="text5">w</span
+        >ho<span class="text5">e</span
+        >ehoawh84ohboalehblwkpu20934u85o2hhtkajhgkahoth3qo4thoasdhgpiaehogahiugfaui
+        sadjbvoaisheoih3o4u9t093y8thouasugauokhef<span class="text5">in</span
+        >w23uihak3iuq2h3bl1hooufhakdjhaksdhfkjasbckjahgiawtgir4gowuyrtwaguerbl23hror
+        kjahoho834yorhawdjfkawerpoiq23ro8y2q3urhwhfoiwefhfiahpeifhaw3oyrioawhjkhciw3yrwuig45uwhteofiasduy8347iutgkajebfkagfagd
+        jheohihu98g3eoyy3yfuwkafhg9e8t3gthbeoi3yeiogfauoytyigbhjrgeayfik3g4r7iwteifgvwkuehfwuigerkwajrwyrig3ikrgwiaetr3iy4fria
+        jkjanfkaheoihwo4hrkweitu893yh4t4kjbfjakfhaowiyt8o3thkqj3oiyt9013ytohfdkusfigqehiu3y5iq3g4uoay892grqkwrkgfkagweufgqwfuj
+        bdkasbukasbeiuriqo2uto5834oihouhfyituw3gi4tyoahtljwhtoaeyektbawleiofceowugroauy39awugbfkhweoifayowierhlaworioiwytuig54
+        nclanweirq2038u5riwtjpoawue9otyo34lbtsuo8wyk45blfjoiyafualweti4tu4wbtoawyf8obo4ityoway4tik43htgiyit4g3otr8oaelgjbflawe
+        kjhdfoqf8h2fweohieb3eoif013h4oihf8ygobdjvbay48y5h8wr8yhwrho82y592hrowhf0823hfjbsfjbi3gf928hfwbdfo829hrwbfo2y928th2io2g
+        fjoi3082y9g2oufougibfo238y9gt3bk4tjowt928hrobwoich9283d0rh2brwueg734bkrbwofih98g3rijwbrfoh23o8hf92fbbdsuifg97gefououfg
+        bci2ofugirugwbuehiu3hfbpi2oh08yf98ww4borisuer83griwu9834ubwebfiugw9efgwkfb2h038cobflaiu8ryo2bhroihsafugkjb3f238ysudkfb
+        kjbcwhoery9283hrlhdiot8wyouhkhtgoiwyt89wy5uoshblfhowerjsdfpc2fu8ry3ou5hblwjefjwpeufosdhnlkfwueoiruljskajwlriusoireyofk
+        kjsdhfi2y984rhfo2yfusbjdfkwkbdvig374gvbkdi73ebjksdkfjhskuf92fihkhsidfyi2hk928uwkfg927gbkjkdfiuwfiy2iurkhf823douagfrued
+      </div>
     </div>
-    <div class="curtain-right" :style="curtain"></div>
 
     <div v-for="element in elements" :key="element">
       <div
@@ -14,6 +113,8 @@
         style="transition: all 1s;"
         v-drag:[mode]="{ is_drag: draggable, id: element.id }"
         v-rotate="{ is_rotate: rotatable, id: element.id }"
+        v-current
+        @click="setCurrent(element.id)"
       >
         <menu-bubble></menu-bubble>
       </div>
@@ -32,6 +133,10 @@
       <v-btn class="btn" v-show="draggable" @click="setTransform('rotate')">
         <v-icon>mdi-crop-rotate</v-icon>
       </v-btn>
+    </div>
+
+    <div class="rightbar">
+      <div></div>
     </div>
 
     <div class="bottombar">
@@ -61,8 +166,7 @@ export default {
   data: () => ({
     draggable: true,
     rotatable: false,
-    screen:
-      "width: 1920px; height: 100vh; position: fixed; background: none; top: 0; border-left: 1px solid #66ffff; border-right: 1px solid #66ffff; transition: all 1s;",
+    screen: "",
     curtain: () => {
       if (window.innerWidth == 1920) {
         return `width: 0px; z-index: 11;`;
@@ -94,28 +198,22 @@ export default {
     setScreentype: function(screen) {
       switch (screen) {
         case "phone":
-          console.log("changed");
           this.mode = "phone";
-          this.screen =
-            "width: 600px; height: 100vh; position: fixed; background: none; top: 0; border-left: 1px solid #66ffff; border-right: 1px solid #66ffff; transition: all 1s;";
+          this.screen = "width: 600px;";
           this.curtain = `width: ${(window.innerWidth - 600) / 2 -
             9}px; z-index: 11;`;
           break;
 
         case "laptop":
-          console.log("changed");
           this.mode = "laptop";
-          this.screen =
-            "width: 1280px; height: 100vh; position: fixed; background: none; top: 0; border-left: 1px solid #66ffff; border-right: 1px solid #66ffff; transition: all 1s;";
+          this.screen = "width: 1280px;";
           this.curtain = `width: ${(window.innerWidth - 1280) / 2 -
             9}px; z-index: 11;`;
           break;
 
         case "desktop":
-          console.log("changed");
           this.mode = "desktop";
-          this.screen =
-            "width: 1920px; height: 100vh; position: fixed; background: none; top: 0; border-left: 1px solid #66ffff; border-right: 1px solid #66ffff; transition: all 1s;";
+          this.screen = "width: 1920px;";
           if (window.innerWidth == 1920) {
             this.curtain = `width: 0px; z-index: 11;`;
           } else {
@@ -128,8 +226,9 @@ export default {
 
     addElement: function() {
       let payload = {
-        //? id
+        //? id & currentElement
         id: this.numberOfElements,
+        currentElement: true,
 
         //? service variables
         is_drag: null,
@@ -177,6 +276,9 @@ export default {
         startAngle: 0
       };
       this.$store.commit("addElement", payload);
+    },
+    setCurrent(id) {
+      this.$store.commit("setCurrentElement", id);
     }
   },
 
@@ -210,25 +312,127 @@ export default {
       return this.$store.getters.getNumberElements;
     },
     currentElement: function() {
-      return this.$store.getters.getCurrentElement;
+      console.log("element changed to");
+      //return this.$store.getters.getCurrentElement;
+      return this.$store.state.currentElement;
     }
   }
 };
 </script>
 
 <style scoped>
+@font-face {
+  font-family: ibm;
+  src: url(../assets/font/3270_Medium_500.ttf);
+}
+
+.background {
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  position: fixed;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-family: ibm;
+  color: #333;
+  line-height: 0.9em;
+}
+.background .text1 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  animation: text 50s linear infinite;
+}
+.background .text2 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(225deg);
+  animation: text 100s linear infinite;
+}
+.background .text3 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(180deg);
+  animation: text 60s linear infinite;
+}
+.background .text4 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(300deg);
+  animation: text 80s linear infinite;
+}
+.background .text5 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(100deg);
+  animation: text 90s linear infinite;
+}
+.background .text6 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(70deg);
+  animation: text 130s linear infinite;
+}
+.background .text7 {
+  position: relative;
+  z-index: -1;
+  color: #fff;
+  filter: hue-rotate(50deg);
+  animation: text 30s linear infinite;
+}
+@keyframes text {
+  0%,
+  5%,
+  10.1%,
+  15.1%,
+  25.1%,
+  45%,
+  70.1%,
+  90%,
+  100% {
+    color: #333;
+    text-shadow: 0 0 0 #333;
+  }
+  5.1%,
+  10%,
+  15.2%,
+  25%,
+  45.1%,
+  70%,
+  90.1%,
+  95% {
+    color: #fff;
+    text-shadow: 0 0 10px #ff3177, 0 0 20px #ff3177, 0 0 40px #ff3177,
+      0 0 80px #ff3177, 0 0 160px #ff3177;
+  }
+}
+
 .transform {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: #777;
+  background: #333;
+  /*background: #777;*/
+  border: solid 2px #66ffff;
+  border-radius: 15px;
   z-index: 10;
+  box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.5),
+    inset 5px 5px 5px rgba(0, 0, 0, 0.8), -2px -2px 5px rgba(255, 255, 255, 0.5),
+    5px 5px 5px rgba(0, 0, 0, 0.8);
+  color: #66ffff;
+  text-shadow: 0px 0px 10px #66ffff;
 }
 
 .center {
   display: flex;
+  align-items: center;
   justify-content: center;
-  justify-self: center;
 }
 .water {
   position: relative;
@@ -310,4 +514,225 @@ export default {
   background: rgba(33, 33, 33, 0.5);
   transition: all 1s;
 }
+
+.right-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 100vh;
+  background: #222;
+  border: 2px solid #222;
+  border-radius: 15px;
+  box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.3),
+    inset 5px 5px 5px rgba(0, 0, 0, 0.5), -2px -2px 5px rgba(255, 255, 255, 0.3),
+    5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.neu-content {
+  box-sizing: border-box;
+  margin-left: 5px;
+  position: relative;
+  padding: 10px;
+  background: #333;
+  border-radius: 15px;
+  box-shadow: inset -2px -2px 2px rgba(255, 255, 255, 0.1),
+    inset 5px 5px 5px rgba(0, 0, 0, 0.5);
+  transform: translate(500px);
+  transition: transform 0.5s;
+  color: #66ffff;
+}
+/*
+.some-content {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: #333;
+  border: 1px solid #333;
+  box-shadow: -3px -3px 3px rgba(255, 255, 255, 0.1),
+    5px 5px 5px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 0px #222,
+    inset 0px 0px 0px #222;
+  margin-left: 100px;
+  transition: box-shadow 0.5s;
+}
+.some-content:hover {
+  box-shadow: 0px 0px 0px #222,
+              0px 0px 0px #222,
+              inset -3px -3px 3px rgba(255, 255, 255, 0.07),
+              inset 5px 5px 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid #66ffff;
+}
+*/
+.some-content {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background: #222;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 0px #222, inset 0px 0px 0px #222;
+  margin-left: 100px;
+  transition: box-shadow 0.5s, background 0.5s, border 0.5s;
+}
+.some-content:hover {
+  box-shadow: inset -3px -3px 2px rgba(255, 255, 255, 0.1),
+    inset 5px 5px 2px rgba(0, 0, 0, 0.5);
+  background: #222;
+  border: 1px solid #222;
+}
+.some-content:active {
+  background: red;
+}
+.neon-stick {
+  width: 100px;
+  height: 5px;
+  background: #66ffff;
+  box-shadow: 0 0 10px 5px #66ffff;
+}
+
+.right-menu-btn {
+  width: 50px;
+  height: 50px;
+  background: #333;
+}
+.right-menu-btn:active + .some-content {
+  background: #fff;
+  border: 1px solid red;
+}
+
+.screen {
+  width: 600px;
+  height: 98vh;
+  position: fixed;
+  z-index: 2;
+  top: 1%;
+  border-radius: 15px;
+  transition: all 1s;
+  /*transition: width 1s, box-shadow 1s, border 1s, z-index 1s;*/
+  background: #333;
+  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.3),
+    7px 7px 10px rgba(0, 0, 0, 0.7);
+}
+
+.top-light {
+  position: fixed;
+  top: 0;
+  width: 600px;
+  height: 0.3vh;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  background: rgba(255, 255, 255, 1);
+  z-index: 4;
+  box-shadow: 0 3px 100px 10px rgba(255, 255, 255, 0.7),
+    0 3px 50px 10px rgba(255, 255, 255, 0.7),
+    0 3px 20px 10px rgba(255, 255, 255, 0.7),
+    0 3px 10px 10px rgba(255, 255, 255, 0.7),
+    0 3px 5px 10px rgba(255, 255, 255, 0.7);
+}
+.bottom-light {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 0.3vh;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  background: rgba(255, 255, 255, 1);
+  z-index: 4;
+  box-shadow: 0 3px 100px 10px rgba(255, 255, 255, 0.7),
+    0 3px 50px 10px rgba(255, 255, 255, 0.7),
+    0 3px 20px 10px rgba(255, 255, 255, 0.7),
+    0 3px 10px 10px rgba(255, 255, 255, 0.7),
+    0 3px 5px 10px rgba(255, 255, 255, 0.7);
+}
+
+.glass-screen {
+  width: 600px;
+  height: 98vh;
+  position: fixed;
+  z-index: 2;
+  top: 1%;
+  border-radius: 15px;
+  transition: all 1s;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+.glass-screen:active {
+  width: 1280px;
+  /*animation: glass-view 2s 1 forwards;*/
+}
+.circle {
+  background: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.screen:active {
+  animation: view 2s 1 forwards;
+}
+
+.screen-limit {
+  width: 600px;
+  height: 102vh;
+  position: fixed;
+  top: -1%;
+  border-right: 3px solid rgba(0, 174, 255, 1);
+  border-left: 3px solid rgba(0, 174, 255, 1);
+  box-shadow: -1px 0px 5px rgba(0, 174, 255, 1),
+    inset -1px 0px 5px rgba(0, 174, 255, 1), 1px 0px 5px rgba(0, 174, 255, 1),
+    inset 1px 0px 5px rgba(0, 174, 255, 1);
+}
+
+.screen-border {
+  width: 600px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  border-right: 3px solid rgba(132, 251, 255, 1);
+  border-left: 3px solid rgba(132, 251, 255, 1);
+}
+
+@keyframes view {
+  0% {
+    width: 600px;
+    z-index: 2;
+    background: #333;
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
+      7px 7px 10px rgba(0, 0, 0, 0.7);
+  }
+  25% {
+    width: 600px;
+    z-index: 0;
+    background: #222;
+    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2),
+      0px 0px 0px rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    width: 1280px;
+    z-index: 0;
+    background: #222;
+    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2),
+      0px 0px 0px rgba(0, 0, 0, 0.7);
+  }
+  75% {
+    width: 1280px;
+    z-index: 2;
+    background: #333;
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
+      7px 7px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  100% {
+    width: 1280px;
+    z-index: 2;
+    background: #333;
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
+      7px 7px 10px rgba(0, 0, 0, 0.7);
+  }
+}
 </style>
+//TODO border: 5px solid #222; //TODO background: #333;

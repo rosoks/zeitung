@@ -41,7 +41,7 @@ export default new Vuex.Store({
 
     //? general variables
     elements: [],
-    currentELement: null
+    currentElement: null
   },
   getters: {
     //! Old version
@@ -151,8 +151,8 @@ export default new Vuex.Store({
     setElement: (state, payload) => {
       state.elements[payload.id] = payload.data;
     },
-    setCurrentELement: (state, payload) => {
-      state.currentELement = payload;
+    setCurrentElement: (state, payload) => {
+      state.currentElement = payload;
     },
 
     //? element variables mutations

@@ -129,9 +129,6 @@ function transform(el, id, mode) {
   if (translate.x == null && translate.y == null) {
     translate_string = "";
   } else {
-    console.log(mode);
-    console.log(translate.x);
-    console.log(translate.y);
     translate_string =
       "translate(" + translate.x + "px, " + translate.y + "px)";
   }
@@ -200,15 +197,9 @@ Vue.directive("drag", {
         //el.initialY = e.clientX - el.yOffset;
 
         if (translate.x == null && translate.y == null) {
-          console.log("initial values");
-          console.log(el.initialX);
-          console.log(el.initialY);
           el.initialX = e.clientX - el.xOffset;
           el.initialY = e.clientY - el.yOffset;
         } else {
-          console.log("initial values");
-          console.log(el.initialX);
-          console.log(el.initialY);
           el.initialX = e.clientX - translate.x;
           el.initialY = e.clientY - translate.y;
         }
@@ -257,7 +248,6 @@ Vue.directive("drag", {
     };
     el.mousedown = function(e) {
       el.transition = el.style.transition;
-      console.log(el.style.transition);
       el.style.transition = null;
       dragStart(e);
     };
@@ -288,8 +278,6 @@ Vue.directive("drag", {
     el.id = bind.value.id;
     el.mode = bind.arg;
     el.is_drag = bind.value.is_drag;
-
-    console.log(el.mode);
 
     //* initialize variables in store
     setMode(el.id, el.mode);
@@ -534,7 +522,6 @@ Vue.directive("rotate", {
     R2D = 180 / Math.PI;
 
     el.start = function(e) {
-      console.log(angle);
       var height, left, top, width, x, y, _ref;
       e.preventDefault();
       (_ref = el.getBoundingClientRect()),
@@ -551,7 +538,6 @@ Vue.directive("rotate", {
     };
 
     el.rotate = function(e) {
-      console.log(angle);
       var d, x, y;
       e.preventDefault();
       x = e.clientX - el.center.x;
