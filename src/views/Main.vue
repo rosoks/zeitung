@@ -1,22 +1,18 @@
 <template>
   <v-app>
     <div class="background"></div>
-    <!--
-    <div class="container">
-      <h1>We give you</h1>
-      <h1>
-        <span
-          class="txt-type"
-          data-wait="2000"
-          data-words='["zeitung", "news", "information"]'
-        ></span>
-      </h1>
-      <h2>swipe to explore...</h2>
-    </div>
-    -->
     <div class="content">
       <div class="logo section">
+        <router-link
+          to="/editor"
+          style="right: 0; transform: rotate(-90deg); margin-right: 3vw; margin-bottom: 10vh"
+          class="arrow"
+        >
+          <div class="arrow-top"></div>
+          <div class="arrow-bottom"></div>
+        </router-link>
         <div
+          id="logo"
           class="txt-type"
           data-wait="2000"
           data-words='["zeitung", "you", "create", "own", "story"]'
@@ -27,10 +23,16 @@
         </a>
       </div>
       <div id="vue" class="section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, vitae.
-        Ducimus animi, commodi nulla nostrum dolorem, natus, repellat alias
-        fugiat laboriosam hic sunt labore architecto quis eos reprehenderit
-        laborum inventore!
+        <div class="center">
+          <router-link
+            to="/content"
+            style="right: 0; transform: rotate(-90deg); margin-right: 3vw; margin-bottom: 45vh"
+            class="arrow"
+          >
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+          </router-link>
+        </div>
         <div class="center">
           <a href="#drupal" class="arrow">
             <div class="arrow-top"></div>
@@ -39,10 +41,26 @@
         </div>
       </div>
       <div id="drupal" class="section">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nobis
-        commodi ea totam dolor. Harum, necessitatibus voluptatem hic reiciendis
-        distinctio deserunt sed ad quisquam fuga temporibus tempore vero vel
-        voluptas.
+        <div class="center">
+          <a
+            href="#vue"
+            style="transform: rotate(180deg); top: 0"
+            class="arrow"
+          >
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+          </a>
+        </div>
+        <div class="center">
+          <router-link
+            to="/content"
+            style="right: 0; transform: rotate(-90deg); margin-right: 3vw; margin-bottom: 45vh"
+            class="arrow"
+          >
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+          </router-link>
+        </div>
         <div class="center">
           <a href="#drupal+vue" class="arrow">
             <div class="arrow-top"></div>
@@ -51,10 +69,32 @@
         </div>
       </div>
       <div id="drupal+vue" class="section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum doloribus
-        exercitationem ipsum voluptas mollitia. Laboriosam, recusandae incidunt?
-        Ex eum quaerat nemo voluptate alias sed at. Voluptatibus repellat
-        possimus nemo quae!
+        <div class="center">
+          <a
+            href="#drupal"
+            style="transform: rotate(180deg); top: 0"
+            class="arrow"
+          >
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+          </a>
+        </div>
+        <div class="inner-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+          doloribus exercitationem ipsum voluptas mollitia. Laboriosam,
+          recusandae incidunt? Ex eum quaerat nemo voluptate alias sed at.
+          Voluptatibus repellat possimus nemo quae!
+        </div>
+        <div class="center">
+          <router-link
+            to="/content"
+            style="right: 0; transform: rotate(-90deg); margin-right: 3vw; margin-bottom: 45vh"
+            class="arrow"
+          >
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+          </router-link>
+        </div>
         <div class="center">
           <a href="#pending" class="arrow">
             <div class="arrow-top"></div>
@@ -224,7 +264,9 @@ h2 {
 }
 
 .content {
+  scroll-snap-type: mandatory;
   scroll-snap-type: y mandatory;
+  scroll-snap-points-y: repeat(100%);
   position: relative;
   width: 100%;
   height: 100%;
@@ -264,6 +306,15 @@ h2 {
   background: url(https://media1.giphy.com/media/3ohhworA3pfJPQVvnq/giphy.gif);
   background-size: cover;
   background-attachment: fixed;
+}
+
+//? inner content
+.inner-content {
+  flex-direction: column;
+  margin-top: 25vh;
+  font-size: 40px;
+  position: relative;
+  width: 50vw;
 }
 
 //?arrow

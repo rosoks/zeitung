@@ -148,6 +148,7 @@
       >
         <v-icon>mdi-crop-rotate</v-icon>
       </button>
+      <router-link class="btn glass-btn" to="/">back</router-link>
     </div>
 
     <div class="rightbar">
