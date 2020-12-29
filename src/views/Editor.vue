@@ -1,10 +1,10 @@
 <template>
-  <v-app style="background: #222;">
+  <v-app style="background: #000; font-family: ibm;">
     <div class="center">
-      <div class="top-light"></div>
+      <div class="top-light" :style="screen"></div>
       <div class="glass-screen" :style="screen"></div>
-      <div class="bottom-light"></div>
-      <div class="background">
+      <div class="bottom-light" :style="screen"></div>
+      <div class="background noselect">
         kjadhfkjabci3hro2834vbaoh4892bcjlbau29bjbohcisacbkjbvajbubawoh8h2boicu093hnfhw893h2fi2vh0qhwnbi20vh3nfiaw983fb2ohw8gsa
         ncgbjxhbwfi820fh74b7en49sk29dhr6rb547fh39dunndmi82ujahfhqobfo83hbjkshv8wbsbouchqo3bouhf9a8w4hfbjbsouefg934fbuagfv9g7fb
         jbvkjzbskdvhwor92hfo23y98fh4rbuhse9r2h3r2oifh28hbfcvoy8bf2ofg92fb2bof347rgwkuihw3yuyfctbrc6tbf6b7rycr8cbovcung7bmtcuyn
@@ -50,7 +50,14 @@
           class="text6"
           >code</span
         >547igtkgwyrtwiugrkwy8rtsajrg2ki3yriutjfkhaifyi
-        alauro2i3rhwiytwgyvjh3rghiwoudfy8soukgejr2o8ro8yaekrjhwitygrjmhafiytaiv3hcdjxfqikwhr23ir82y3rhliruliayfgkwjhfisoyefkus
+        <div class="grid">
+          <span>alauro2i3rhwiytwgyvjh3rghiwoudf</span
+          ><span class="days-info typing rand-color">{{ new Date() }}</span
+          ><span class="days-info-back">y8soukgejr2o8ro8yaekrjhwitygr</span
+          ><span
+            >jmhafiytaiv3hcdjxfqikwhr23ir82y3rhliruliayfgkwjhfisoyefkus</span
+          >
+        </div>
         ksgfuywiu3gfoy3trgaufdia72liusidyksgebfjckxzjgwy3orihrowutugerflsyrewk3rklheriqyro2hruegrky23oiryeo87rsliayrkewgrho23y
         ncalfhlweir2093ruilahfljhzusydklahwegkjtywtjgslkefhsuytekwjgrlfus89eywh3khroweut8wugrbko<span
           class="text7"
@@ -110,33 +117,45 @@
     <div v-for="element in elements" :key="element">
       <div
         class="transform"
-        style="transition: all 1s;"
         v-drag:[mode]="{ is_drag: draggable, id: element.id }"
-        v-rotate="{ is_rotate: rotatable, id: element.id }"
-        v-current
+        v-rotate:[mode]="{ is_rotate: rotatable, id: element.id }"
+        v-current="{ id: element.id }"
+        v-style:[mode]="{ style: style, id: element.id }"
         @click="setCurrent(element.id)"
       >
-        <menu-bubble></menu-bubble>
+        <menu-bubble :id="currentElement" :mode="mode"></menu-bubble>
       </div>
     </div>
 
     <div class="leftbar">
-      <v-btn @click="addElement()" class="btn">
+      <button @click="addElement()" class="btn glass-btn">
         <v-icon>mdi-plus</v-icon>
-      </v-btn>
-      <v-btn class="btn">
+      </button>
+      <button class="btn glass-btn" @click="deleteElement()">
         <v-icon>mdi-delete</v-icon>
-      </v-btn>
-      <v-btn class="btn" v-show="rotatable" @click="setTransform('drag')">
+      </button>
+      <button
+        class="btn glass-btn"
+        v-show="rotatable"
+        @click="setTransform('drag')"
+      >
         <v-icon>mdi-drag</v-icon>
-      </v-btn>
-      <v-btn class="btn" v-show="draggable" @click="setTransform('rotate')">
+      </button>
+      <button
+        class="btn glass-btn"
+        v-show="draggable"
+        @click="setTransform('rotate')"
+      >
         <v-icon>mdi-crop-rotate</v-icon>
-      </v-btn>
+      </button>
     </div>
 
     <div class="rightbar">
-      <div></div>
+      <div style="margin-top: 50px">
+        Current element is: {{ currentElement }}
+      </div>
+      <v-textarea rows="5" no-resize label="style" v-model="style"></v-textarea>
+      <v-btn style="width: 100%">generate</v-btn>
     </div>
 
     <div class="bottombar">
@@ -155,6 +174,7 @@
 
 <script>
 import MenuBubble from "@/components/MenuBubble.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
@@ -164,6 +184,7 @@ export default {
   },
 
   data: () => ({
+    //? data
     draggable: true,
     rotatable: false,
     screen: "",
@@ -174,10 +195,41 @@ export default {
         return `width: ${(window.innerWidth - 1920) / 2 - 9}px; z-index: 11;`;
       }
     },
-    mode: "desktop"
+    mode: "desktop",
+    back: [],
+    back_rows: 30,
+    back_letters_in_row: 150,
+
+    //? element data
+    style: ""
   }),
 
   methods: {
+    uuid: function() {
+      var uuidValue = "",
+        k,
+        randomValue;
+      for (k = 0; k < 32; k++) {
+        randomValue = (Math.random() * 16) | 0;
+
+        if (k == 8 || k == 12 || k == 16 || k == 20) {
+          uuidValue += "-";
+        }
+        uuidValue += (k == 12
+          ? 4
+          : k == 16
+          ? (randomValue & 3) | 8
+          : randomValue
+        ).toString(16);
+      }
+      return uuidValue;
+    },
+
+    randomN: function(min, max) {
+      let rand = Math.random() * (max - min) + min;
+      return Math.round(rand);
+    },
+
     setTransform: function(transform) {
       switch (transform) {
         case "drag":
@@ -198,6 +250,9 @@ export default {
     setScreentype: function(screen) {
       switch (screen) {
         case "phone":
+          this.style = this.$store.state.elements[
+            this.currentElement
+          ].transform_object["phone"].style;
           this.mode = "phone";
           this.screen = "width: 600px;";
           this.curtain = `width: ${(window.innerWidth - 600) / 2 -
@@ -205,6 +260,9 @@ export default {
           break;
 
         case "laptop":
+          this.style = this.$store.state.elements[
+            this.currentElement
+          ].transform_object["laptop"].style;
           this.mode = "laptop";
           this.screen = "width: 1280px;";
           this.curtain = `width: ${(window.innerWidth - 1280) / 2 -
@@ -212,6 +270,9 @@ export default {
           break;
 
         case "desktop":
+          this.style = this.$store.state.elements[
+            this.currentElement
+          ].transform_object["desktop"].style;
           this.mode = "desktop";
           this.screen = "width: 1920px;";
           if (window.innerWidth == 1920) {
@@ -230,32 +291,69 @@ export default {
         id: this.numberOfElements,
         currentElement: true,
 
+        //? string variables for transform
+        translate_string: "",
+        rotate_string: "",
+        scale_string: "",
+        style_string: "",
+
         //? service variables
         is_drag: null,
         mode: null,
         is_resize: null,
         is_rotate: null,
         transform_object: {
-          translate: {
-            phone: {
+          phone: {
+            translate: {
               x: null,
               y: null
             },
-            laptop: {
-              x: null,
-              y: null
-            },
-            desktop: {
-              x: null,
-              y: null
-            }
+            rotate: null,
+            style: null,
+            content: null
           },
-          rotate: null,
-          scale: null,
-          resize: {
-            width: null,
-            height: null
+          laptop: {
+            translate: {
+              x: null,
+              y: null
+            },
+            rotate: null,
+            style: null,
+            content: null
+          },
+          desktop: {
+            translate: {
+              x: null,
+              y: null
+            },
+            rotate: null,
+            style: null,
+            content: null
           }
+          //translate: {
+          //  phone: {
+          //    x: null,
+          //    y: null
+          //  },
+          //  laptop: {
+          //    x: null,
+          //    y: null
+          //  },
+          //  desktop: {
+          //    x: null,
+          //    y: null
+          //  }
+          //},
+          //rotate: {
+          //  phone: null,
+          //  laptop: null,
+          //  desktop: null
+          //},
+          //scale: null,
+          //resize: {
+          //  width: null,
+          //  height: null
+          //}
         },
 
         //? drag variables
@@ -276,6 +374,9 @@ export default {
         startAngle: 0
       };
       this.$store.commit("addElement", payload);
+    },
+    deleteElement: function() {
+      this.$store.state.elements.splice(this.currentElement);
     },
     setCurrent(id) {
       this.$store.commit("setCurrentElement", id);
@@ -311,32 +412,196 @@ export default {
     numberOfElements: function() {
       return this.$store.getters.getNumberElements;
     },
-    currentElement: function() {
-      console.log("element changed to");
-      //return this.$store.getters.getCurrentElement;
-      return this.$store.state.currentElement;
+    ...mapState(["currentElement"]),
+    style: {
+      get: function() {
+        if (this.currentElement == undefined || this.currentElement == null) {
+          return this.$store.state.elements[this.currentElement]
+            .transform_object[this.mode].style;
+        } else {
+          return null;
+        }
+      },
+      set: function(newValue) {
+        this.$store.state.elements[this.currentElement].transform_object[
+          this.mode
+        ].style = newValue;
+      }
     }
+  },
+
+  watch: {
+    style(newValue) {
+      let mode = this.mode;
+      let el = this.currentElement;
+      this.$store.state.elements[el].transform_object[mode].style = newValue;
+      console.log("new style!");
+    },
+    currentElement(newValue) {
+      let mode = this.mode;
+      let el = newValue;
+      this.style = this.$store.state.elements[el].transform_object[mode].style;
+    },
+    mode(newValue) {
+      this.$store.state.currentMode = newValue;
+    }
+  },
+  created() {
+    function setProperty(duration, red, blue, green) {
+      duration = duration * 10;
+      document.body.style.setProperty("--animation-time", duration + "s");
+      document.body.style.setProperty(
+        "--color",
+        "rgba(" + red + ", " + blue + ", " + green + ", 1)"
+      );
+    }
+    function changeAnimationTime() {
+      const animationDuration = Math.floor(Math.random(20));
+      const color_red = Math.floor(Math.random(255) * 100);
+      const color_blue = Math.floor(Math.random(255) * 100);
+      const color_green = Math.floor(Math.random(255) * 100);
+      setProperty(animationDuration, color_red, color_blue, color_green);
+    }
+    setInterval(changeAnimationTime, 10000);
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+:root {
+  --animation-time: 2s;
+  --color: rgb(51, 51, 51);
+}
 @font-face {
   font-family: ibm;
   src: url(../assets/font/3270_Medium_500.ttf);
 }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+}
 .background {
   top: 0;
   left: 0;
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   text-transform: uppercase;
   font-size: 30px;
   font-family: ibm;
   color: #333;
+  background-image: linear-gradient();
+
   line-height: 0.9em;
+  transition: all 1s;
+  color: #333;
+  /*animation: rand var(--animation-time) steps(30, end) infinite;*/
+}
+$random255: random(255);
+.rand-color {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px var(--color), 0 0 9px var(--color), 0 0 8px var(--color),
+    0 0 7px var(--color), 0 0 6px var(--color);
+}
+@keyframes rand {
+  0% {
+    box-shadow: 0px 0px 1px #333;
+  }
+  50% {
+    box-shadow: 0px 0px 1px var(--color);
+  }
+  100% {
+    box-shadow: 0px 0px 1px #333;
+  }
+}
+.background .days-info {
+  position: relative;
+  max-width: fit-content;
+  width: 100%;
+  max-height: fit-content;
+  height: 100%;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  font-size: 30px;
+  white-space: nowrap;
+  /*margin: 0 auto;*/
+  /*letter-spacing: 0.15em;*/
+  animation: typing 10s steps(30, end) infinite,
+    blink-caret 0.75s step-end infinite;
+}
+.background .days-info-back {
+  position: relative;
+  max-width: fit-content;
+  width: 100%;
+  max-height: fit-content;
+  height: 100%;
+  overflow: hidden;
+  font-size: 30px;
+  white-space: nowrap;
+  /*margin: 0 auto;*/
+  /*letter-spacing: 0.15em;*/
+  animation: typing-reverse 10s steps(30, end) infinite;
+}
+/* The typing effect */
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  10% {
+    width: 0;
+  }
+  40% {
+    width: 100%;
+  }
+  60% {
+    width: 100%;
+  }
+  90% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes typing-reverse {
+  0% {
+    width: 100rem;
+  }
+  10% {
+    width: 100rem;
+  }
+  40% {
+    width: 0;
+  }
+  60% {
+    width: 0;
+  }
+  90% {
+    width: 100rem;
+  }
+  100% {
+    width: 100rem;
+  }
+}
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
 .background .text1 {
   position: relative;
@@ -418,15 +683,8 @@ export default {
   width: 100px;
   height: 100px;
   background: #333;
-  /*background: #777;*/
-  border: solid 2px #66ffff;
   border-radius: 15px;
   z-index: 10;
-  box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.5),
-    inset 5px 5px 5px rgba(0, 0, 0, 0.8), -2px -2px 5px rgba(255, 255, 255, 0.5),
-    5px 5px 5px rgba(0, 0, 0, 0.8);
-  color: #66ffff;
-  text-shadow: 0px 0px 10px #66ffff;
 }
 
 .center {
@@ -468,13 +726,6 @@ export default {
   background: rebeccapurple;
   z-index: 1;
 }
-
-/*
-.bottom {
-  position: fixed;
-  bottom: 0;
-}
-*/
 .leftbar {
   display: flex;
   align-content: center;
@@ -496,6 +747,23 @@ export default {
   width: 100%;
   position: fixed;
   bottom: 0;
+}
+
+.rightbar {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  background: #333;
+  position: fixed;
+  right: 0;
+  z-index: 12;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .curtain-left {
@@ -542,29 +810,6 @@ export default {
   transition: transform 0.5s;
   color: #66ffff;
 }
-/*
-.some-content {
-  width: 100px;
-  height: 100px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  background: #333;
-  border: 1px solid #333;
-  box-shadow: -3px -3px 3px rgba(255, 255, 255, 0.1),
-    5px 5px 5px rgba(0, 0, 0, 0.5),
-    inset 0px 0px 0px #222,
-    inset 0px 0px 0px #222;
-  margin-left: 100px;
-  transition: box-shadow 0.5s;
-}
-.some-content:hover {
-  box-shadow: 0px 0px 0px #222,
-              0px 0px 0px #222,
-              inset -3px -3px 3px rgba(255, 255, 255, 0.07),
-              inset 5px 5px 5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #66ffff;
-}
-*/
 .some-content {
   width: 100px;
   height: 100px;
@@ -601,30 +846,16 @@ export default {
   background: #fff;
   border: 1px solid red;
 }
-
-.screen {
-  width: 600px;
-  height: 98vh;
-  position: fixed;
-  z-index: 2;
-  top: 1%;
-  border-radius: 15px;
-  transition: all 1s;
-  /*transition: width 1s, box-shadow 1s, border 1s, z-index 1s;*/
-  background: #333;
-  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.3),
-    7px 7px 10px rgba(0, 0, 0, 0.7);
-}
-
 .top-light {
   position: fixed;
   top: 0;
-  width: 600px;
+  width: 1880px;
   height: 0.3vh;
   border-bottom-right-radius: 100px;
   border-bottom-left-radius: 100px;
   background: rgba(255, 255, 255, 1);
   z-index: 4;
+  transition: all 1s;
   box-shadow: 0 3px 100px 10px rgba(255, 255, 255, 0.7),
     0 3px 50px 10px rgba(255, 255, 255, 0.7),
     0 3px 20px 10px rgba(255, 255, 255, 0.7),
@@ -634,12 +865,13 @@ export default {
 .bottom-light {
   position: fixed;
   bottom: 0;
-  width: 600px;
+  width: 1880px;
   height: 0.3vh;
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
   background: rgba(255, 255, 255, 1);
   z-index: 4;
+  transition: all 1s;
   box-shadow: 0 3px 100px 10px rgba(255, 255, 255, 0.7),
     0 3px 50px 10px rgba(255, 255, 255, 0.7),
     0 3px 20px 10px rgba(255, 255, 255, 0.7),
@@ -648,7 +880,7 @@ export default {
 }
 
 .glass-screen {
-  width: 600px;
+  width: 1920px;
   height: 98vh;
   position: fixed;
   z-index: 2;
@@ -660,10 +892,6 @@ export default {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.01);
 }
-.glass-screen:active {
-  width: 1280px;
-  /*animation: glass-view 2s 1 forwards;*/
-}
 .circle {
   background: red;
   width: 100px;
@@ -671,68 +899,34 @@ export default {
   border-radius: 50%;
 }
 
-.screen:active {
-  animation: view 2s 1 forwards;
+.btn {
+  width: fit-content;
+  height: fit-content;
+  z-index: 10;
 }
 
-.screen-limit {
-  width: 600px;
-  height: 102vh;
-  position: fixed;
-  top: -1%;
-  border-right: 3px solid rgba(0, 174, 255, 1);
-  border-left: 3px solid rgba(0, 174, 255, 1);
-  box-shadow: -1px 0px 5px rgba(0, 174, 255, 1),
-    inset -1px 0px 5px rgba(0, 174, 255, 1), 1px 0px 5px rgba(0, 174, 255, 1),
-    inset 1px 0px 5px rgba(0, 174, 255, 1);
+.glass-btn {
+  position: relative;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 10px;
+  /*transition: all 1s;*/
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.5s;
+}
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.screen-border {
-  width: 600px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  border-right: 3px solid rgba(132, 251, 255, 1);
-  border-left: 3px solid rgba(132, 251, 255, 1);
-}
-
-@keyframes view {
-  0% {
-    width: 600px;
-    z-index: 2;
-    background: #333;
-    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
-      7px 7px 10px rgba(0, 0, 0, 0.7);
-  }
-  25% {
-    width: 600px;
-    z-index: 0;
-    background: #222;
-    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2),
-      0px 0px 0px rgba(0, 0, 0, 0.7);
-  }
-  50% {
-    width: 1280px;
-    z-index: 0;
-    background: #222;
-    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2),
-      0px 0px 0px rgba(0, 0, 0, 0.7);
-  }
-  75% {
-    width: 1280px;
-    z-index: 2;
-    background: #333;
-    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
-      7px 7px 10px rgba(0, 0, 0, 0.7);
-  }
-
-  100% {
-    width: 1280px;
-    z-index: 2;
-    background: #333;
-    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.2),
-      7px 7px 10px rgba(0, 0, 0, 0.7);
-  }
+.neumorphic-btn {
+  position: relative;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 15px;
+  box-shadow: -3px -3px 3px rgba(255, 255, 255, 0.1),
+    5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 </style>
-//TODO border: 5px solid #222; //TODO background: #333;

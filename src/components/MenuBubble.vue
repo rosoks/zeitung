@@ -68,6 +68,10 @@ export default {
     EditorContent,
     EditorMenuBubble
   },
+  props: {
+    id: null,
+    mode: String
+  },
   data() {
     return {
       keepInBounds: true,
@@ -91,11 +95,23 @@ export default {
           new History(),
           new Image()
         ],
-        content: `
-          
-        `
-      })
+        content: `...`,
+        onUpdate: ({ getHTML }) => {
+          this.html = getHTML();
+        }
+      }),
+      html: ""
     };
+  },
+  watch: {
+    html(newValue) {
+      this.$store.state.elements[this.id].transform_object[
+        this.mode
+      ].content = newValue;
+      console.log(
+        this.$store.state.elements[this.id].transform_object[this.mode].content
+      );
+    }
   },
   beforeDestroy() {
     this.editor.destroy();

@@ -11,37 +11,10 @@ export default new Vuex.Store({
     currentPlacable: null
     */
     //* New code
-    //? service variables
-    is_drag: null,
-    mode: null,
-    is_resize: null,
-    is_rotate: null,
-    transform_object: {
-      translate: {
-        phone: {
-          x: null,
-          y: null
-        },
-        laptop: {
-          x: null,
-          y: null
-        },
-        desktop: {
-          x: null,
-          y: null
-        }
-      },
-      rotate: null,
-      scale: null,
-      resize: {
-        width: null,
-        height: null
-      }
-    },
-
     //? general variables
     elements: [],
-    currentElement: null
+    currentElement: null,
+    currentMode: null
   },
   getters: {
     //! Old version
@@ -108,6 +81,11 @@ export default new Vuex.Store({
     },
     getResize: state => id => {
       return state.elements[id].transform_object.resize;
+    },
+
+    //* new code
+    getContent: (state, id, mode) => {
+      return state.elements[id].transform_object[mode].content;
     }
   },
   mutations: {
@@ -182,6 +160,13 @@ export default new Vuex.Store({
     },
     setResize: (state, payload) => {
       state.elements[payload.id].transform_object.resize = payload.data;
+    },
+
+    //* new code
+    setContent: (state, content) => {
+      state.elements[content.id].transform_object[
+        content.mode
+      ].content = content;
     }
   },
   actions: {},

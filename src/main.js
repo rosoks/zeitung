@@ -19,15 +19,15 @@ function setTranslate(id, mode, cord) {
   store.commit("setTranslate", payload);
   */
 
-  store.state.elements[id].transform_object.translate[mode] = cord;
+  store.state.elements[id].transform_object[mode].translate = cord;
 }
 
 function getTranslate(id, mode) {
-  return store.state.elements[id].transform_object.translate[mode];
+  return store.state.elements[id].transform_object[mode].translate;
 }
 
 //? rotate mutation & getter
-function setRotate(id, rotation) {
+function setRotate(id, mode, rotation) {
   /*
   let payload = {
     id: id,
@@ -35,10 +35,18 @@ function setRotate(id, rotation) {
   };
   store.commit("setRotate", payload);
   */
-  store.state.elements[id].transform_object.rotate = rotation;
+  store.state.elements[id].transform_object[mode].rotate = rotation;
 }
-function getRotate(id) {
-  return store.state.elements[id].transform_object.rotate;
+function getRotate(id, mode) {
+  return store.state.elements[id].transform_object[mode].rotate;
+}
+
+//? style mutation & getter
+function setStyle(id, mode, style) {
+  store.state.elements[id].transform_object[mode].style = style;
+}
+function getStyle(id, mode) {
+  return store.state.elements[id].transform_object[mode].style;
 }
 
 //? controller mutations & getters
@@ -72,17 +80,16 @@ function setMode(id, mode) {
   */
   store.state.elements[id].mode = mode;
 }
-/*
+
 function getIsDrag(id) {
-  return store.getters.getIsDrag(id);
+  return store.state.elements[id].is_drag;
 }
 function getIsRotate(id) {
-  return store.getters.getIsRotate(id);
+  return store.state.elements[id].is_rotate;
 }
-function getMode(id) {
-  return store.getters.getMode(id);
-}
-*/
+//function getMode(id) {
+//  return store.state.elements[id].mode;
+//}
 
 /*
 //? transform controller
@@ -118,29 +125,41 @@ var transform_object = {
 */
 
 function transform(el, id, mode) {
-  let translate_string;
-  let rotate_string;
-  let scale_string;
+  let translate_string = store.state.elements[id].translate_string;
+  let rotate_string = store.state.elements[id].rotate_string;
+  let scale_string = store.state.elements[id].scale_string;
+  let style_string = store.state.elements[id].style_string;
 
   //? data from vuex
   let translate = getTranslate(id, mode);
-  let rotate = getRotate(id);
+  let rotate = getRotate(id, mode);
+  //let is_drag = getIsDrag(id);
+  //let is_rotate = getIsRotate(id);
+  let style = getStyle(id, mode);
 
+  //! drag transformations
+  //if (is_drag == true) {
   if (translate.x == null && translate.y == null) {
     translate_string = "";
   } else {
     translate_string =
       "translate(" + translate.x + "px, " + translate.y + "px)";
+    store.state.elements[id].translate_string = translate_string;
   }
+  //}
 
+  //! rotate transformations
+  //if (is_rotate == true) {
   if (rotate == null) {
     rotate_string = "";
   } else {
     rotate_string = "rotate(" + rotate + "deg)";
+    store.state.elements[id].rotate_string = rotate_string;
   }
+  //}
 
   //! scale transformations
-  scale_string = "";
+  scale_string = " ";
   /*
   if (transform_object.scale == null) {
     scale_string = "";
@@ -149,8 +168,6 @@ function transform(el, id, mode) {
   }
   */
 
-  el.style.transform =
-    translate_string + " " + rotate_string + " " + scale_string;
   //! resize transformations
   /*
   if (transform_object.resize.width != null) {
@@ -160,15 +177,33 @@ function transform(el, id, mode) {
     el.style.height = transform_object.resize.height + "px";
   }
   */
+
+  //! style transformations
+  if (style == null) {
+    style_string = "";
+  } else {
+    style_string = style;
+  }
+
+  //? transform apply
+  el.style.transform =
+    translate_string + " " + rotate_string + " " + scale_string;
+
+  //? style apply
+  el.style.cssText += style_string;
 }
 
 Vue.directive("drag", {
   bind: function(el, bind) {
+    //! transition set
+    el.style.transition = "all 1s";
+
     //? service variables
     let body = document.body;
     el.id = bind.value.id;
     el.mode = bind.arg;
     el.is_drag = bind.value.is_drag;
+    console.log(el.is_drag);
     let translate = getTranslate(el.id, el.mode);
 
     //* initialize variables in store
@@ -184,7 +219,6 @@ Vue.directive("drag", {
     el.initialY = translate.y;
     el.xOffset = 0;
     el.yOffset = 0;
-    el.transition;
 
     //? functions
     function dragStart(e) {
@@ -236,6 +270,7 @@ Vue.directive("drag", {
         y: currentY
       };
       setTranslate(el.id, el.mode, cord);
+      setIsDrag(el.id, el.is_drag);
       transform(el, el.id, el.mode);
     }
 
@@ -248,7 +283,7 @@ Vue.directive("drag", {
     };
     el.mousedown = function(e) {
       el.transition = el.style.transition;
-      el.style.transition = null;
+      el.style.transition = "";
       dragStart(e);
     };
     el.mousemove = function(e) {
@@ -256,13 +291,12 @@ Vue.directive("drag", {
     };
     el.mouseup = function(e) {
       el.style.transition = el.transition;
-      el.transition = null;
       dragEnd(e);
     };
 
     //* code
 
-    if (el.is_drag == true) {
+    if (getIsDrag(el.id) == true) {
       el.addEventListener("mouseover", el.mouseover);
       el.addEventListener("mouseout", el.mouseout);
 
@@ -488,21 +522,23 @@ Vue.directive("resize-dot", {
 Vue.directive("rotate", {
   bind: function(el, bind) {
     //? service variables
-    let id = bind.value.id;
-    let is_rotate = bind.value;
+    el.id = bind.value.id;
+    el.is_rotate = bind.value.is_rotate;
+    el.mode = bind.arg;
 
     //* initialize variables in store
-    setIsRotate(id, is_rotate);
+    setIsRotate(el.id, el.is_rotate);
+    getIsRotate(el.id);
 
-    var R2D, active, angle, init, rotation, startAngle;
+    //var R2D, active, angle, init, rotation, startAngle;
 
-    active = false;
+    el.active = false;
 
-    angle = 0;
+    el.angle = 0;
 
-    rotation = 0;
+    el.rotation = 0;
 
-    startAngle = 0;
+    el.startAngle = 0;
 
     el.center = {
       x: el.getBoundingClientRect().left,
@@ -513,68 +549,78 @@ Vue.directive("rotate", {
       return e.preventDefault();
     };
 
-    init = function() {
+    el.init = function() {
       el.addEventListener("mousedown", el.start, false);
       el.addEventListener("mousemove", el.rotate, false);
       document.body.addEventListener("mouseup", el.stop, false);
     };
 
-    R2D = 180 / Math.PI;
+    el.R2D = 180 / Math.PI;
 
     el.start = function(e) {
-      var height, left, top, width, x, y, _ref;
+      console.log(el.style.transition);
+      el.transition = el.style.transition;
+      el.style.transition = "";
+      //var height, left, top, width, x, y, _ref;
       e.preventDefault();
-      (_ref = el.getBoundingClientRect()),
-        (top = _ref.top),
-        (left = _ref.left),
-        (height = _ref.height),
-        (width = _ref.width);
-      el.center.x = left + width / 2;
-      el.center.y = top + height / 2;
-      x = e.clientX - el.center.x;
-      y = e.clientY - el.center.y;
-      startAngle = R2D * Math.atan2(y, x);
-      return (active = true);
+      (el._ref = el.getBoundingClientRect()),
+        (el.top = el._ref.top),
+        (el.left = el._ref.left),
+        (el.height = el._ref.height),
+        (el.width = el._ref.width);
+      el.center.x = el.left + el.width / 2;
+      el.center.y = el.top + el.height / 2;
+      el.x = e.clientX - el.center.x;
+      el.y = e.clientY - el.center.y;
+      el.startAngle = el.R2D * Math.atan2(el.y, el.x);
+      return (el.active = true);
     };
 
     el.rotate = function(e) {
-      var d, x, y;
+      //var d, x, y;
       e.preventDefault();
-      x = e.clientX - el.center.x;
-      y = e.clientY - el.center.y;
-      d = R2D * Math.atan2(y, x);
-      rotation = d - startAngle;
-      if (active) {
+      el.x = e.clientX - el.center.x;
+      el.y = e.clientY - el.center.y;
+      el.d = el.R2D * Math.atan2(el.y, el.x);
+      el.rotation = el.d - el.startAngle;
+      if (el.active) {
         //return (el.style.transform = "rotate(" + (angle + rotation) + "deg)");
-        let endRotation = angle + rotation;
-        setRotate(id, endRotation);
-        transform(el, id, setMode(id));
+        el.endRotation = el.angle + el.rotation;
+        setRotate(el.id, el.mode, el.endRotation);
+        transform(el, el.id, el.mode);
       }
     };
 
     el.stop = function() {
-      angle += rotation;
-      return (active = false);
+      el.style.transition = el.transition;
+      console.log(el.style.transition);
+      el.angle += el.rotation;
+      return (el.active = false);
     };
 
-    if (is_rotate == true) {
-      init();
+    if (el.is_rotate == true) {
+      el.init();
     }
   },
-  componentUpdated: function(el, bind) {
+  update: function(el, bind) {
     //? service variables
-    let id = bind.value.id;
-    let is_rotate = bind.value;
+    el.id = bind.value.id;
+    el.mode = bind.arg;
+    el.is_rotate = bind.value.is_rotate;
+    //el.mode = getMode(el.id);
 
     //* initialize variables in store
-    setIsRotate(id, is_rotate);
+    setIsRotate(el.id, el.is_rotate);
+    setMode(el.id, el.mode);
+
+    transform(el, el.id, el.mode);
 
     el.center = {
       x: el.getBoundingClientRect().left,
       y: el.getBoundingClientRect().top
     };
 
-    if (is_rotate == true) {
+    if (el.is_rotate == true) {
       el.addEventListener("mousedown", el.start, false);
       el.addEventListener("mousemove", el.rotate, false);
       document.body.addEventListener("mouseup", el.stop, false);
@@ -604,6 +650,48 @@ Vue.directive("resize", {
   }
 });
 */
+Vue.directive("current", {
+  bind: function(el, bind) {
+    el.over = false;
+    el.id = bind.value.id;
+    el.mousedown = function() {
+      //console.log(el.over);
+      if (el.over == true) {
+        store.state.currentElement = el.id;
+        //el.style.background = "red";
+        //el.style.transform += "scale(1.5)"
+      } else {
+        if (store.state.currentElement != el.id) {
+          //el.style.background = "#333";
+          //el.style.transform += "scale(1)";
+        }
+      }
+    };
+    el.mouseover = function() {
+      el.over = true;
+    };
+    el.mouseout = function() {
+      el.over = false;
+      //el.style.background = "#333";
+    };
+    el.addEventListener("mousedown", el.mousedown, false);
+    el.addEventListener("mouseover", el.mouseover, false);
+    el.addEventListener("mouseout", el.mouseout, false);
+  },
+  unbind: function(el) {
+    el.removeEventListener("mousedown", el.mousedown, false);
+  }
+});
+Vue.directive("style", {
+  update: function(el, bind) {
+    el.id = bind.value.id;
+    el.mode = bind.arg;
+    el.styling = bind.value.style;
+    setStyle(el.id, el.mode, el.styling);
+
+    transform(el, el.id, el.mode);
+  }
+});
 
 new Vue({
   router,
